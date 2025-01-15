@@ -40,7 +40,7 @@ body {
   
   .list {
     background-color: #1e1e1e;
-    border: 2px solid rgb(181, 206, 148);
+    border: 2px solid rgb(132, 248, 108);
     border-radius: 8px;
     padding: 10px;
     width: 100%;
@@ -120,16 +120,19 @@ body {
     display: flex;
     justify-content: space-between;
   }
-  
-  .delete-task {
-    background-color: #ff0040;
-    border: none;
-    color: #fff;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 5px;
+
+
+  .new-sections {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 40px;
   }
   
+  #big-section-1, #big-section-2 {
+    min-height: 300px;
+  }
+
   @media (min-width: 600px) {
     .list {
       width: 30%;

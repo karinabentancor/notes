@@ -3,7 +3,7 @@ const lists = document.querySelectorAll('.list');
 
 let draggedNote = null;
 
-notes.forEach(note => {
+function addDragEvents(note) {
   note.addEventListener('dragstart', () => {
     draggedNote = note;
     setTimeout(() => note.style.display = 'none', 0);
@@ -11,11 +11,11 @@ notes.forEach(note => {
 
   note.addEventListener('dragend', () => {
     setTimeout(() => {
-      draggedNote.style.display = 'block';
+      note.style.display = 'block';
       draggedNote = null;
     }, 0);
   });
-});
+}
 
 lists.forEach(list => {
   list.addEventListener('dragover', (e) => e.preventDefault());
@@ -38,16 +38,15 @@ function addTask() {
   const taskText = newTaskInput.value.trim();
   if (taskText === '') return;
 
-  const li = document.createElement('li');
-  li.textContent = taskText;
+  const div = document.createElement('div');
+  div.textContent = taskText;
+  div.classList.add('note');
+  div.draggable = true;
+  addDragEvents(div);
 
-  const deleteButton = document.createElement('button');
-  deleteButton.textContent = 'X';
-  deleteButton.classList.add('delete-task');
-  deleteButton.addEventListener('click', () => li.remove());
-
-  li.appendChild(deleteButton);
-  taskList.appendChild(li);
-
+  document.getElementById('todo').appendChild(div);
   newTaskInput.value = '';
 }
+
+// Initialize drag events for existing notes
+notes.forEach(note => addDragEvents(note));
